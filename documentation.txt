@@ -1,0 +1,226 @@
+Documentation for Hospital Management System
+
+Users Collection
+
+    {
+      "_id": ObjectId, 
+      "username": String,
+      "email": String,
+      "password": String,
+      "role": enum, (patient/admin/staff)
+      "status": bool (isLoggedIn?)
+    }
+
+Patients Collection
+
+    {
+      "_id": ObjectId, (PatientId)
+      "username": String,
+      "email": String,
+      "password": String,
+      "userId": FK,
+      "Name": String,
+      "dateOfBirth": ISODate,
+      "gender": String,
+      "Blood Group": String,
+      "Profile": Blob,
+      "Insurance": {   (Embedded Document)
+        EffectiveDate
+        ExpirationDate
+        InsuranceProvider
+        InsuranceType
+        InsuranceCoverage
+        Deductible
+      }
+      "contactInfo": {  (Embedded Document)
+        "phone": String,
+        "address": String
+      },
+      "status": bool (isLoggedIn?)
+    }
+
+Staff Collection
+
+   {
+      "_id": ObjectId, (StaffId)
+      "userId": FK,
+      "Name": String,
+      "dateOfBirth": ISODate,
+      Profile: Blob,
+      "specialization": String,
+      "Qualification": String,
+      "role": enum, (doctor/admin/nurse/worker)
+      "contactInfo": {  (Embedded Document)
+        "phone": String,
+        "address": String
+      },
+    }
+
+Medical History Collection
+
+    {
+      "_id": ObjectId,
+      "PatientId": FK,
+      "Medications": String,
+      "MedicalCondition": String,
+      diagnozed_with: {  (Embedded Document)
+        "disease": String,
+        "Treated": bool,
+        "date": date
+    },
+    }
+
+Appointment Collection
+
+   {
+      "_id": ObjectId,
+      "PatientId": FK,
+      "staffId": FK,
+      "Date&Time": ISODate,
+      "AppointmentStatus": Enum,
+      "VisitReason": String,
+      "Visited": bool
+    }
+
+
+
+Billing Collection
+   {
+    "_id": ObjectId,
+    "PatientId": FK,
+    "Medications": { 
+     {pharmaId, Quantity},
+     {__, __},
+     },
+    "BillingDescription": {
+    labCharges,
+    hospitalCharges,
+    medicationCharges
+    },
+    Status: Enum,
+    Insurance: FK,
+  }
+
+Inventory Collection :-
+
+   {
+      "_id": ObjectId,
+      "Equipment": String,
+      "Pharmaceuticals": {  (Embedded Document)
+       "itemName": String,
+       "description": String,
+       "category": String,
+       "quantityAvailable": Number,
+       "unitOfMeasurement": Number,
+      },
+    }
+
+MedicationBill :-
+{
+      "_id": ObjectId,
+      "PatientId": FK,
+      "Medications": {   (Embedded Document)
+       "MedName" : String,
+       "description" : String,
+       "Expiry" : ISODate,
+       "Quantity" : Number,
+       "MRP" : Number,
+      },
+    }
+
+
+PatientAPI's :-
+Patient signup
+Patient login
+Patient logout
+getPatient
+updatePatient
+Patient uploadProfile (through multer)
+deletePatient
+Patient forgetPassword
+
+Appontment API's :-
+Create Appointment
+Get Appointment Details
+Update Appointment
+Cancel Appointment
+Get Upcoming Appointments
+Get Appointments by Doctor
+
+Doctor API's :-
+Create Doctor
+Get Doctor Details
+Update Doctor Information
+Delete Doctor
+List All Doctors
+
+Staff API's :-
+Create Staff Member
+Get Staff Details
+Update Staff Information
+Delete Staff Member
+List All Staff Members
+
+Billing and Insurance Processing:-
+Create Bill
+Get Bill Details
+Update Bill Information
+Process Payment
+Get Unpaid Bills
+Generate Insurance Claim
+Get Insurance Claim Status
+
+Inventory Management for Medical Supplies:-
+Add Inventory Item
+Get Inventory Item Details
+Update Inventory Item
+Delete Inventory Item
+List All Inventory Items
+Track Inventory Usage
+Generate Reorder Report
+
+Reporting and Analytics for Patient Statistics:-
+Generate Patient Statistics Report
+Get Patient Demographics
+Get Appointment Statistics
+Get Billing Statistics
+Get Inventory Usage Report
+
+Authentication and Authorization:-
+User Registration
+User Login
+User Logout
+Access Control and Permissions Management
+
+
+
+
+
+
+dump:-
+
+Staff Collection
+
+   {
+      "_id": ObjectId,
+      "Name": String,
+      Profile: Blob
+      "role": String,
+      "Qualification": String,
+      "employeeId": FK,
+      "contactInfo": {  (Embedded Document)
+        "email": String,
+        "phone": String,
+        "address": String
+      },
+    }
+
+Employee Collection
+
+   {
+      "_id": ObjectId,
+      "userId" : FK,
+      "dateOfBirth": ISODate,
+      "JoiningDate": ISODate,
+      "Salary: Number
+    }

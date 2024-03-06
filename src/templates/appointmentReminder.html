@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .header {
+            background-color: #3498db;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .content {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Appointment Reminder</h1>
+        </div>
+        <div class="content">
+            <h2>Dear Patient,</h2>
+            <p>This is a reminder for your upcoming appointment.</p>
+            <div class="message">
+                <p><strong>Date: </strong>{{ appointmentDate }}</p>
+                <p><strong>Time Slot: </strong>{{ selectedSlot }}</p>
+                <p><strong>Doctor's Name: </strong>{{ doctorName }}</p>
+                <p><strong>Visit Reason: </strong>{{ visitReason }}</p>
+                <p><strong>Department: </strong>{{ departmentName }}</p>
+            </div>
+            <p>We look forward to seeing you at the clinic. If you have any questions, please don't hesitate to contact us.</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2023 Hospital Management System</p>
+        </div>
+    </div>
+</body>
+
+</html>
